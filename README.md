@@ -1,7 +1,7 @@
 #  Bucket List
 
 ## Struct Comparable
-- Add `protocol`
+- Add protocol `Comparable`
 
 ```swift
 struct User: Identifiable, Comparable {
@@ -18,3 +18,13 @@ struct User: Identifiable, Comparable {
 }
 ```
 
+- Use
+```swift
+let users = [
+    User(firstName: "Kevin", lastName: "Cuadros"),
+    User(firstName: "Andres", lastName: "Montes"),
+    User(firstName: "Camila", lastName: "Torrez")
+].sorted()
+```
+
+## Documents Directory
