@@ -17,9 +17,7 @@ struct DocumentDirectoryStore: View {
     }
     
     func writeDocument() {
-        print(URL.documentsDirectory)
         let data = Data("Test Message".utf8)
-        
         let url = URL.documentsDirectory.appending(path: "message.txt")
         
         do {

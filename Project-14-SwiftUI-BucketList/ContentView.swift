@@ -7,35 +7,48 @@
 
 import SwiftUI
 
-struct User: Identifiable, Comparable {
-    
-    let id = UUID()
-    var firstName: String
-    var lastName: String
-    
-    // Required when add Comparable protocol
-    static func < (lhs: User, rhs: User) -> Bool {
-        lhs.firstName < rhs.firstName
+struct LoadingView: View {
+    var body: some View {
+        Text("Loading...")
     }
-    
+}
+
+struct SuccessView: View {
+    var body: some View {
+        Text("Success...")
+    }
+}
+
+struct FailedView: View {
+    var body: some View {
+        Text("Failed...")
+    }
 }
 
 struct ContentView: View {
     
-    let values = [1, 5, 2, 3, 6, 4].sorted()
+    enum LoadingState {
+        case loading, success, failed
+    }
     
-    let users = [
-        User(firstName: "Kevin", lastName: "Cuadros"),
-        User(firstName: "Andres", lastName: "Montes"),
-        User(firstName: "Camila", lastName: "Torrez")
-    ].sorted()
+    @State private var loadingState = LoadingState.loading
     
     var body: some View {
-        List(values, id: \.self) { i in
-            Text("\(i)")
+        if loadingState == .loading {
+            LoadingView()
+        } else if loadingState == .success {
+            SuccessView()
+        } else if loadingState == .failed {
+            FailedView()
         }
-        List(users) { i in
-            Text("\(i.firstName) \(i.lastName)")
+        
+        switch loadingState {
+        case .loading:
+            LoadingView()
+        case .success:
+            SuccessView()
+        case .failed:
+            FailedView()
         }
     }
 }
