@@ -27,4 +27,21 @@ let users = [
 ].sorted()
 ```
 
-## Documents Directory
+## Map
+
+- Marker Types
+```swift
+    Marker(location.name, coordinate: location.coordinate)
+```
+
+```swift
+    Annotation(location.name, coordinate: location.coordinate) {
+        Text(location.name)
+            .font(.headline)
+            .padding()
+            .background(.blue.gradient)
+            .foregroundStyle(.white)
+            .clipShape(.capsule)
+    }
+    .annotationTitles(.hidden)
+```
