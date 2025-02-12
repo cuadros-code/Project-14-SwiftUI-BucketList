@@ -8,22 +8,65 @@
 import SwiftUI
 import MapKit
 
+struct Location: Identifiable {
+    let id = UUID()
+    var name: String
+    var coordinate: CLLocationCoordinate2D
+}
+
 struct ContentView: View {
+    
+    @State private var locations = [
+        Location(
+            name: "Palace",
+            coordinate: CLLocationCoordinate2D(latitude: 51.501, longitude: -0.141)
+        ),
+        Location(
+            name: "Tower of London",
+            coordinate: CLLocationCoordinate2D(latitude: 51.508, longitude: -0.076)
+        )
+    ]
     
     @State private var position = MapCameraPosition.region(
         MKCoordinateRegion(
             center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275),
-            span: MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1)
+            span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2)
         )
     )
     
     var body: some View {
         VStack {
-            Map(position: $position)
-                .mapStyle(.hybrid(elevation: .realistic))
-                .onMapCameraChange { context in
-                    print(context.region)
+            MapReader { proxy in
+                Map(position: $position, interactionModes: [.all]) {
+                    ForEach(locations) { location in
+                        //                    Marker(location.name, coordinate: location.coordinate)
+                        Annotation(location.name, coordinate: location.coordinate) {
+                            Text(location.name)
+                                .font(.headline)
+                                .padding()
+                                .background(.blue.gradient)
+                                .foregroundStyle(.white)
+                                .clipShape(.capsule)
+                        }
+                        .annotationTitles(.hidden)
+                    }
                 }
+                .mapStyle(.hybrid(elevation: .realistic))
+                .onMapCameraChange(frequency: .continuous) { context in
+                    print(context.camera)
+                }
+                .onTapGesture { pos in
+                    if let coordinate = proxy.convert(pos, from: .local) {
+                        
+                        let newPosition = Location(
+                            name: "Kevin",
+                            coordinate: coordinate
+                        )
+                        locations.append(newPosition)
+                    }
+                    
+                }
+            }
             
             HStack(spacing: 50) {
                 Button("Paris") {
