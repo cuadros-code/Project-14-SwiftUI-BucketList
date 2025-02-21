@@ -56,9 +56,8 @@ struct MapView: View {
                 }
                 .onTapGesture { pos in
                     if let coordinate = proxy.convert(pos, from: .local) {
-                        
                         let newPosition = Location(
-                            name: "Kevin",
+                            name: "\(coordinate.longitude)",
                             coordinate: coordinate
                         )
                         locations.append(newPosition)
