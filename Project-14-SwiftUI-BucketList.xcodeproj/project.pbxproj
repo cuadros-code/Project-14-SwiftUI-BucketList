@@ -8,13 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		1B0F17972D594C3F00D80D2B /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 1B0F17962D594C3F00D80D2B /* README.md */; };
-		1B3758262D6CC91500800D8D /* FaceIDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3758252D6CC91500800D8D /* FaceIDView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1B0F17962D594C3F00D80D2B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		1B2CC5342D57E4C0002F73E2 /* Project-14-SwiftUI-BucketList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project-14-SwiftUI-BucketList.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1B3758252D6CC91500800D8D /* FaceIDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceIDView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -39,7 +37,6 @@
 		1B2CC52B2D57E4C0002F73E2 = {
 			isa = PBXGroup;
 			children = (
-				1B3758252D6CC91500800D8D /* FaceIDView.swift */,
 				1B0F17962D594C3F00D80D2B /* README.md */,
 				1B2CC5362D57E4C0002F73E2 /* Project-14-SwiftUI-BucketList */,
 				1B2CC5352D57E4C0002F73E2 /* Products */,
@@ -129,7 +126,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B3758262D6CC91500800D8D /* FaceIDView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
