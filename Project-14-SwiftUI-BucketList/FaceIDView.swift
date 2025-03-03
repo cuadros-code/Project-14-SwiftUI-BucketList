@@ -6,11 +6,55 @@
 //
 
 import SwiftUI
+import LocalAuthentication
 
 struct FaceIDView: View {
+    
+    @State private var isUnlocked = false
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            if isUnlocked {
+                Text("Unlocked")
+            } else {
+                Text("Locked")
+            }
+        }
+        .onAppear(perform: authenticate)
     }
+    
+    func authenticate() {
+        let context = LAContext()
+        var error: NSError?
+        
+        if context
+            .canEvaluatePolicy(
+                .deviceOwnerAuthenticationWithBiometrics,
+                error: &error
+            ) {
+            
+            let reason = "We need to unlock your data."
+            
+            context
+                .evaluatePolicy(
+                    .deviceOwnerAuthenticationWithBiometrics,
+                    localizedReason: reason
+                ) { success, authenticationError in
+                
+                    if success {
+                        isUnlocked = true
+                    } else {
+                        isUnlocked = false
+                    }
+                    
+                }
+            
+        } else {
+            isUnlocked = false
+        }
+        
+    }
+    
 }
 
 #Preview {
