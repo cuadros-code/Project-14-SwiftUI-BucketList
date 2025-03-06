@@ -10,11 +10,11 @@ import MapKit
 
 struct MapView: View {
     @State private var locations = [
-        Location(
+        LocationModel(
             name: "Palace",
             coordinate: CLLocationCoordinate2D(latitude: 51.501, longitude: -0.141)
         ),
-        Location(
+        LocationModel(
             name: "Tower of London",
             coordinate: CLLocationCoordinate2D(latitude: 51.508, longitude: -0.076)
         )
@@ -50,7 +50,7 @@ struct MapView: View {
                 }
                 .onTapGesture { pos in
                     if let coordinate = proxy.convert(pos, from: .local) {
-                        let newPosition = Location(
+                        let newPosition = LocationModel(
                             name: "\(coordinate.longitude)",
                             coordinate: coordinate
                         )
