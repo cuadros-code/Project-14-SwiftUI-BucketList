@@ -9,8 +9,6 @@ import SwiftUI
 import MapKit
 
 
-
-
 struct ContentView: View {
     
     let startPosition = MapCameraPosition.region(
@@ -21,6 +19,8 @@ struct ContentView: View {
     )
     
     @State private var locations = [Location]()
+    
+    @State private var selectedPlace: Location?
     
     
     var body: some View {
@@ -37,6 +37,11 @@ struct ContentView: View {
                             .frame(width: 44, height: 44)
                             .background(.white)
                             .clipShape(.circle)
+                            .simultaneousGesture(
+                                LongPressGesture(minimumDuration: 0.2).onEnded { _ in
+                                    selectedPlace = location
+                                }
+                            )
                     }
                 }
             }
@@ -51,6 +56,10 @@ struct ContentView: View {
                     )
                     locations.append(newLocation)
                 }
+            }
+            
+            .sheet(item: $selectedPlace) { place in
+                Text(place.name)
             }
         }
     }
