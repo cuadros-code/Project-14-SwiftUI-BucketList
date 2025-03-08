@@ -45,3 +45,12 @@ let users = [
     }
     .annotationTitles(.hidden)
 ```
+
+## Not Compile Code
+
+```swift 
+
+#if DEBUG
+    // Your code
+#endif
+```
