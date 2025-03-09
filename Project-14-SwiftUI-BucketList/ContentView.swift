@@ -38,7 +38,9 @@ struct ContentView: View {
                             .background(.white)
                             .clipShape(.circle)
                             .simultaneousGesture(
-                                LongPressGesture(minimumDuration: 0.2).onEnded { _ in
+                                LongPressGesture(
+                                    minimumDuration: 0.2
+                                ).onEnded { _ in
                                     selectedPlace = location
                                 }
                             )
