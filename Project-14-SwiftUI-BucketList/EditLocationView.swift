@@ -16,6 +16,8 @@ struct EditLocationView: View {
     @State private var name: String
     @State private var description: String
     
+    var onSave: (Location) -> Void
+    
     var body: some View {
         NavigationStack {
             Form {
@@ -27,6 +29,12 @@ struct EditLocationView: View {
             .navigationTitle("Place Details")
             .toolbar {
                 Button("Save") {
+                    var newLocation = location
+                    
+                    newLocation.name = name
+                    newLocation.description = description
+                    
+                    onSave(newLocation)
                     dismiss()
                 }
             }
@@ -34,8 +42,9 @@ struct EditLocationView: View {
         }
     }
     
-    init(location: Location) {
+    init(location: Location, onSave: @escaping (Location) -> Void) {
         self.location = location
+        self.onSave = onSave
         
         _name = State(initialValue: location.name)
         _description = State(initialValue: location.description)
@@ -44,5 +53,5 @@ struct EditLocationView: View {
 }
 
 #Preview {
-    EditLocationView(location: .example)
+    EditLocationView(location: .example) { _ in }
 }
