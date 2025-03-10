@@ -61,7 +61,11 @@ struct ContentView: View {
             }
             
             .sheet(item: $selectedPlace) { place in
-                Text(place.name)
+                EditLocationView(location: place) { newLocation in
+                    if let index = locations.firstIndex(of: place) {
+                        locations[index] = newLocation
+                    }
+                }
             }
         }
     }

@@ -9,7 +9,7 @@ import Foundation
 import MapKit
 
 struct Location: Codable, Identifiable, Equatable {
-    let id: UUID
+    var id: UUID
     var name: String
     var description: String
     var latitude: Double // Here don't use CLLocationCoordinate2D when for strange reason is not accepted by Codable
