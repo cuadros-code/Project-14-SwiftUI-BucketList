@@ -18,7 +18,7 @@ extension ContentView {
         
         private(set) var locations: [Location]
         var selectedPlace: Location?
-        var isUnlocked = false
+        var isUnlocked = true
         var mapStyle: MapStyle = .standard
         var authenticateError = false
         
