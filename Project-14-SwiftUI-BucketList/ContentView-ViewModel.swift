@@ -8,6 +8,7 @@
 import Foundation
 import MapKit
 import LocalAuthentication
+import SwiftUI
 
 
 extension ContentView {
@@ -18,6 +19,18 @@ extension ContentView {
         private(set) var locations: [Location]
         var selectedPlace: Location?
         var isUnlocked = false
+        var mapStyle: MapStyle = .standard
+        var authenticateError = false
+        
+        var mapStyleState = true {
+            didSet {
+                if mapStyleState {
+                    mapStyle = .standard
+                } else {
+                    mapStyle = .hybrid
+                }
+            }
+        }
         
         let savePath = URL.documentsDirectory.appending(path: "SavedPlaces")
         
@@ -85,12 +98,12 @@ extension ContentView {
                         if success {
                             self.isUnlocked = true
                         } else {
-                            // error unlock
+                            self.authenticateError = true
                         }
                     }
                 
             } else {
-                // No biometrics available
+                authenticateError = true
             }
             
             
